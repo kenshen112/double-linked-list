@@ -115,6 +115,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="assignment07.cpp" />
+    <ClCompile Include="fibonacci.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="fibonacci.h" />
+    <ClInclude Include="list.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
