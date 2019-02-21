@@ -1,7 +1,7 @@
 /***********************************************************************
 * Program:
 *    Assignment 07, LIST
-*    Brother #######, CS 235
+*    Brother Kirby, CS 235
 * Author:
 *    
 * Summary: 
