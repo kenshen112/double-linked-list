@@ -30,7 +30,7 @@ public:
 	Number Operator << (Number rhs);
 
 private:
-	list digits;
+	list<int> digits;
 };
 
 Number & Number::Operator = (const Number & rhs)

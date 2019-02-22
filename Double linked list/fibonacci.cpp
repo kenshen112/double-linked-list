@@ -70,4 +70,66 @@ void fibonacci()
    cout << endl;
 }
 
+/*******************************************
+* Here follows methods for the Number class
+********************************************/
+
+/******************************************
+* NUMBER DEFAULT CONSTRUCTOR
+*******************************************/
+Number::Number()
+{
+	//I don't think i actually need to put anything here???
+}
+
+/************************************************
+* NUMBER NON-DEFAULT CASE ONE
+*********************************************/
+Number::Number(Number rhs)
+{
+	this->digits = rhs.digits; //relying on the list assignment operator here
+}
+
+/**************************************************
+* NUMBER NON-DEFAULT CASE TWO
+***************************************************/
+Number::Number(int in)
+{
+	//i need to interpret the int into its seperate sets of three digits... and push them into the list...
+}
+
+/************************************************
+* NUMBER DESTRUCTOR
+*************************************************/
+Number::~Number()
+{
+	//Here we will make sure the memory for the list is freed// or rather don't, the list class should take care of itself???
+}
+
+/***********
+* Operators
+************/
+
+/*******************************
+* ASSIGNMENT OPERATOR
+********************************/
+Number::operator += (Number rhs)
+{
+	//add the sets of digits one at a time, watching for the case of carrying, use an iterator?
+	list<int> iterator it = this->digits.begin();
+	list<int> iterator ir = rhs->digits.begin();
+	bool carry = false;
+
+	for (ir; ir != NULL; ir.increment())
+	{
+		if (carry)
+		{
+			*it.data += 1
+		}
+	}
+}
+
+
+
+
 
