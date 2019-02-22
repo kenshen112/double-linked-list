@@ -22,7 +22,7 @@ class Number
 public:
 	//constructor, copy constructor, destructor, nondefault construrctor
 	Number();
-	Number(Number *rhs);
+	Number(const Number &rhs);
 	Number(int in);
 	~Number();
 

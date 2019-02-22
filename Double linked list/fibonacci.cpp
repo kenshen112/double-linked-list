@@ -85,7 +85,7 @@ Number::Number()
 /************************************************
 * NUMBER NON-DEFAULT CASE ONE
 *********************************************/
-Number::Number(Number rhs)
+Number::Number(const Number &rhs)
 {
 	this->digits = rhs.digits; //relying on the list assignment operator here
 }
@@ -113,7 +113,7 @@ Number::~Number()
 /*******************************
 * ASSIGNMENT OPERATOR
 ********************************/
-Number::operator += (Number rhs)
+Number Number::operator+= (Number &rhs)
 {
 	//add the sets of digits one at a time, watching for the case of carrying, use an iterator?
 	list<int> iterator it = this->digits.begin();
