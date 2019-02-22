@@ -147,24 +147,5 @@ Number::operator += (Number rhs)
 /****************************
 *NUMBER ASSIGNMENT OPERATOR
 *****************************/
-Number::operator = (Number rhs)
-{
-	digits = rhs.digits;
-}
 
-/************************************
-*NUMBER INSERTION OPERATOR
-********************************/
-Number::operator << (Number rhs)
-{
-	list<int> iterator rit = rhs.digits.rbegin();
 
-	for (rit; rit != nullptr; rit.decrement())
-	{
-		cout << rit->data;
-		if (rit->pPrev != nullptr)
-		{
-			cout << ',';
-		}
-	}
-}
