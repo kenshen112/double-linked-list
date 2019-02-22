@@ -26,10 +26,11 @@ namespace custom
 		{
 			this = rhs;
 		}
-
+		//the copy constructor and the assignment operator should be basically the same
+		// making a new version of the list that is passed to it. new, and seperate.
 		list operator=(list rhs)
 		{
-			this = rhs; //pointers are fun kids
+			this = rhs; //pointers are fun kids //I don't think that how it should work - Ken
 		}
 
 		class iterator;
@@ -144,9 +145,17 @@ namespace custom
 	// These seem flawed...
 
 	template <class T>
-    list<T> iterator :: list <T> ::insert(list<T> ::iterator & it, const T & data)
+    list <T> ::insert(list<T> ::iterator & it, const T & data)
 	{
-		Node <T> *pNew = new Node(data);
+		Node <T> *pNew;
+		try
+		{
+			pNew = new Node(data);
+		}
+		catch (std::bad_alloc)
+		{
+			throw "unable to allocate a new node for a list";
+		}
 
 		if (it != NULL)
 		{
@@ -180,6 +189,7 @@ namespace custom
 		if (pTail == nullptr)
 		{
 			pTail = itemNode;
+			pHead = itemNode;
 		}
 
 		else 
@@ -209,6 +219,7 @@ namespace custom
 		if (pHead == nullptr)
 		{
 			pHead = itemNode;
+			pTail = itemNode;
 		}
 
 		else
@@ -224,12 +235,22 @@ namespace custom
 	template <class T>
 	void list<T>::pop_front()
 	{
+		if (empty())
+			return;
+		pHead = pHead->pNext;
+		delete pHead->pPrev;
+		pHead->pPrev = nullptr;
 
 	}
 
 	template<class T>
 	void list<T>::pop_back()
 	{
+		if (empty())
+			return;
+		pTail = pTail->pPrev;
+		delete pTail->pNext;
+		pTail->pNext = nullptr;
 
 	}
 
@@ -291,7 +312,7 @@ namespace custom
 
 		T operator*()
 		{
-
+			return this->data;
 		}
 
 	};
