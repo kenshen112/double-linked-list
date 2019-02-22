@@ -37,7 +37,7 @@ public:
 	{
 		list<int> iterator rit = rhs.digits.rbegin();
 
-		for (rit; rit != nullptr; rit.decrement())
+		for (rit; rit != nullptr; rit--)
 		{
 			cout << rit->data;
 			if (rit->pPrev != nullptr)

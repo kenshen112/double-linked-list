@@ -119,7 +119,7 @@ Number::operator += (Number rhs)
 	list<int> iterator it = this->digits.begin();
 	list<int> iterator ir = rhs->digits.begin();
 	
-	for (ir; ir != nullptr; ir.increment())//as long as we earent out of things to add, keep going
+	for (ir; ir != nullptr; ir++)//as long as we earent out of things to add, keep going
 	{
 		if (it == nullptr)
 		{//if the number we are adding to is not big enoug, no big deal, just throw it on the end
@@ -139,7 +139,7 @@ Number::operator += (Number rhs)
 				else
 					it->pNext->data += 1;
 			}
-			it.increment();
+			it++;
 		}
 	}
 }
