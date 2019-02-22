@@ -85,7 +85,7 @@ Number::Number()
 /************************************************
 * NUMBER NON-DEFAULT CASE ONE
 *********************************************/
-Number::Number(const Number &rhs)
+Number::Number(Number rhs)
 {
 	this->digits = rhs.digits; //relying on the list assignment operator here
 }
@@ -96,6 +96,18 @@ Number::Number(const Number &rhs)
 Number::Number(int in)
 {
 	//i need to interpret the int into its seperate sets of three digits... and push them into the list...
+	//   simple, i need to use modulus, in sets of 1000. :)
+	//   three steps, one, is it equal to or bigger than 1K
+	//                two, either way push that number to the back of digits.
+	//			      three, divide by 1K to remove the three lowest digits from play.
+	// actually, two should go first, then one, then three... or, we don't even need one!
+
+	while (in != 0)
+	{
+		digits.push_back(in % 1000);
+		in = (in / 1000);
+	}
+
 }
 
 /************************************************
@@ -111,9 +123,9 @@ Number::~Number()
 ************/
 
 /*******************************
-* ASSIGNMENT OPERATOR
+* ADD ONTO OPERATOR
 ********************************/
-Number Number::operator+= (Number &rhs)
+Number::operator += (Number rhs)
 {
 	//add the sets of digits one at a time, watching for the case of carrying, use an iterator?
 	list<int> iterator it = this->digits.begin();
@@ -143,9 +155,3 @@ Number Number::operator+= (Number &rhs)
 		}
 	}
 }
-
-/****************************
-*NUMBER ASSIGNMENT OPERATOR
-*****************************/
-
-
