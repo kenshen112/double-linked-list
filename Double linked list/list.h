@@ -3,6 +3,8 @@
 
 namespace custom
 {
+
+
 	template <class T>
 	class list
 	{
@@ -20,9 +22,9 @@ namespace custom
 			numElements = 0;
 		}
 
-		list(list rhs)
+		list(const list <T> &rhs)
 		{
-
+			this = rhs;
 		}
 
 		list operator=(list rhs)
@@ -30,105 +32,43 @@ namespace custom
 			this = rhs; //pointers are fun kids
 		}
 
-		class list <T> ::iterator
-		{
+		class iterator;
+		class reverse_iterator;
 
-		private:
-			Node<T> *p;
-
-		public:
-			iterator()
-			{
-				p = nullptr;
-			}
-
-			iterator(Node <T> *pNew)
-			{
-				p = pNew
-			}
-
-			iterator(const iterator &rhs)
-			{
-				this = rhs; // agian with the refractoring
-			}
-
-			iterator operator=(const iterator &rhs)
-			{
-				this = rhs; // this will be refractored 
-			}
-
-			iterator operator++()
-			{
-				if (p->pNext)
-				{
-					p = p->pNext;
-				}
-			}
-
-			iterator operator--()
-			{
-				if (p->pPrev)
-				{
-					p = p->pPrev;
-				}
-			}
-
-			bool operator==(iterator it)
-			{
-				return this == rhs;
-			}
-
-			bool operator!=(iterator it)
-			{
-				return this != rhs;
-			}
-
-			T operator*()
-			{
-
-			}
-
-		}
 
 		int size() { return numElements; }
 
 		bool empty() { return pHead == nullptr; }
 
 		void clear();
-		void erase();
 		void push_back(T item);
 		void push_front(T item);
 		void pop_back();
 		void pop_front();
 
-		list<T> ::iterator begin();
-		list <T> ::iterator end();
+		
 		T front();
 		T back();
 
-		friend iterator list <T> ::insert(iterator & it, const T & data)
-		{
-			Node <T> *pNew = new Node(data);
+		friend list<T> ::iterator list <T> ::insert(iterator & it, const T & data);
+		
 
-			if (it != NULL)
-			{
-				pNew->pNext = it;
-				pNew->pPrev = it.pPrev;
-				it.pPrev = pNew;
+		
+		list <T> ::iterator list <T> ::find(const T & t);
+		list <T> ::iterator list <T> ::erase(list <T> ::iterator it);
+		list <T> ::iterator list<T> ::end();
+		list <T> ::iterator list<T> ::begin();
 
-				if (pNew->pPrev != nullptr)
-				{
-					pNew->pPrev->pNext = pNew;
-				}
-			}
 
-			return pNew;
-		}
+		list <T> ::reverse_iterator list<T> ::rend();
+		list <T> ::reverse_iterator list<T> ::rbegin();
+
 
 		~list()
 		{
 			clear();
 		}
+
 
 	};
 
@@ -143,6 +83,12 @@ namespace custom
 	list<T>::iterator list<T>::end()
 	{
 		return list<T>::iterator(nullptr);
+	}
+
+	template<class T>
+	list<T>::iterator list<T>::find(const T & t)
+	{
+		return list<T>::iterator();
 	}
 
 
@@ -170,7 +116,7 @@ namespace custom
 
 		else
 		{
-			return (pHead->data + numElements);
+			return pTail->data;
 		}
 	}
 
@@ -184,13 +130,12 @@ namespace custom
 		pTail = nullptr;
 
 		// To explicitly free the malloc or rather newly allocated memory
-
 		delete pHead;
 		delete pTail;
 	}
 
 	template <class T>
-	void list<T>::erase()
+	list<T>::iterator list<T>::erase(list <T> ::iterator it)
 	{
 
 	}
@@ -199,11 +144,38 @@ namespace custom
 	// These seem flawed...
 
 	template <class T>
+    list<T> iterator :: list <T> ::insert(list<T> ::iterator & it, const T & data)
+	{
+		Node <T> *pNew = new Node(data);
+
+		if (it != NULL)
+		{
+			pNew->pNext = it;
+			pNew->pPrev = it.pPrev;
+			it.pPrev = pNew;
+
+			if (pNew->pPrev != nullptr)
+			{
+				pNew->pPrev->pNext = pNew;
+			}
+		}
+
+		return pNew;
+	}
+
+
+	template <class T>
 	void list<T>::push_back(T item)
 	{
-		Node <T> *itemNode = new Node<T>(item); //making a new node
-		
-
+		Node <T> *itemNode;
+		try
+		{	
+			itemNode = new Node<T>(item); //making a new node
+		}
+		catch (std::bad_alloc)
+		{
+			throw "ERROR: unable to allocate a new node for a list";
+		}
 
 		if (pTail == nullptr)
 		{
@@ -212,14 +184,11 @@ namespace custom
 
 		else 
 		{
-			Node <T> *tempPrev = pTail;
+			
+			itemNode->pPrev = pTail;
 
-			while (tempPrev->pPrev != nullptr)
-			{
-				tempPrev = tempPrev->pPrev;
-			}
-
-			tempPrev = itemNode;
+			pTail = itemNode;
+			numElements++;
 		}
 
 	}
@@ -227,22 +196,27 @@ namespace custom
 	template <class T>
 	void list<T>::push_front(T item)
 	{
-		Node <T> *itemNode = new Node<T>(item); //making a new node
+		Node <T> *itemNode;
+		try
+		{
+			itemNode = new Node<T>(item); //making a new node
+		}
+		catch (std::bad_alloc)
+		{
+			throw "ERROR: unable to allocate a new node for a list";
+		}
 
 		if (pHead == nullptr)
 		{
-			pHead = itemNode
+			pHead = itemNode;
 		}
 
 		else
 		{
-			Node<T> *tempFront = pHead;
+			itemNode->pNext = pHead;
+			pHead = itemNode;
 
-			while (tempFront->pNext != nullptr)
-			{
-				tempFront = tempFront->pNext;
-			}
-			pHead = tempFront;
+			numElements++;
 		}
 
 	}
@@ -258,5 +232,70 @@ namespace custom
 	{
 
 	}
+
+
+
+	template <class T>
+	class list <T> ::iterator
+	{
+
+	private:
+		Node<T> *p;
+
+	public:
+		iterator()
+		{
+			p = nullptr;
+		}
+
+		iterator(Node <T> *pNew)
+		{
+			p = pNew;
+		}
+
+		iterator(const iterator &rhs)
+		{
+			this = rhs; // again with the refractoring
+		}
+
+		iterator operator=(const iterator &rhs)
+		{
+			this = rhs; // this will be refractored 
+		}
+
+		iterator operator++()
+		{
+			if (p->pNext)
+			{
+				p = p->pNext;
+			}
+		}
+
+		iterator operator--()
+		{
+			if (p->pPrev)
+			{
+				p = p->pPrev;
+			}
+		}
+
+		bool operator==(iterator it)
+		{
+			return this == rhs;
+		}
+
+		bool operator!=(iterator it)
+		{
+			return this != rhs;
+		}
+
+		T operator*()
+		{
+
+		}
+
+	};
+
+
 
 }
