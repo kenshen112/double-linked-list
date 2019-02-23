@@ -37,12 +37,12 @@ public:
 	}
 	Number operator<<(Number rhs)
 	{
-		std::list<int>::reverse_iterator rit = rhs.digits.rbegin(); // rBegin belongs to reverse_iterator no valid conversion to iterator.
+           //std::list<int>::reverse_iterator rit = rhs.digits.rbegin(); // rBegin belongs to reverse_iterator no valid conversion to iterator.
 
-		for (rit; rit != nullptr; rit--)
+		for ( std::list<int>::reverse_iterator rit = rhs.digits.rbegin(); rit != rhs.digits.rend(); ++rit)
 		{
-			std::cout << rit.data; // were not using std nor should we, this is the proper C++ way to call anything from std or custom for that instance, Tim.
-			if (rit.pPrev != nullptr)
+			std::cout << *rit; // were not using std nor should we, this is the proper C++ way to call anything from std or custom for that instance, Tim.
+			if (rit != rhs.digits.rend())
 			{
 				std::cout << ',';
 			}
