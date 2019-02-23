@@ -27,9 +27,33 @@ namespace custom
 		}
 
 		list(const list <T> &rhs);
-		//{
-			//this = rhs;
-		//}
+		{
+			bool first = true;
+			Node <T> *pTemp = rhs.pHead;
+			for (int i = rhs.numElements; i > 0; i--)
+			{
+				Node <T> *pNew;
+				try
+				{
+					pNew = new Node <T>;
+				}
+				catch (std::bad_alloc)
+				{
+					throw "Error: Unable to accolcate new Node for list";
+				}
+
+				pNew->data = pTemp->data;
+				
+				if (first)
+				{
+					pHead = pNew;
+					first = false;
+				}
+				//Not done here yet
+
+
+			}
+		}
 		//the copy constructor and the assignment operator should be basically the same
 		// making a new version of the list that is passed to it. new, and seperate.
 		list operator=(list rhs);
@@ -109,7 +133,7 @@ namespace custom
 	{
 		if (empty())
 		{
-			throw("ERROR: unable to access data from an empty list");
+			throw "ERROR: unable to access data from an empty list";
 		}
 
 		else
@@ -123,7 +147,7 @@ namespace custom
 	{
 		if (empty())
 		{
-			throw("ERROR: unable to access data from an empty list");
+			throw "ERROR: unable to access data from an empty list";
 		}
 
 		else
@@ -135,15 +159,10 @@ namespace custom
 	template <class T>
 	void list<T>::clear()
 	{
-		numElements = 0;
-
-		// To Clear the data out of the pointers
-		pHead = nullptr;
-		pTail = nullptr;
-
-		// To explicitly free the malloc or rather newly allocated memory
-		delete pHead;
-		delete pTail;
+		for (numElements; numElements >= 1; numElements--)
+		{
+			pop_front();
+		}
 	}
 
 	// These seem flawed...
@@ -213,10 +232,18 @@ namespace custom
 	{
 		if (empty())
 			return;
+		if (numElements == 1)
+		{
+			delete pHead;
+			pHead = nullptr;
+			pTail = nullptr;
+			return;
+		}
 		pHead = pHead->pNext;
 		delete pHead->pPrev;
 		pHead->pPrev = nullptr;
-
+		numElements--;
+		return;
 	}
 
 	template<class T>
@@ -224,10 +251,18 @@ namespace custom
 	{
 		if (empty())
 			return;
+		if (numElements == 1)
+		{
+			delete pTail;
+			pHead = nullptr;
+			pTail = nullptr;
+			return;
+		}
 		pTail = pTail->pPrev;
 		delete pTail->pNext;
 		pTail->pNext = nullptr;
-
+		numElements--;
+		return;
 	}
 
 
