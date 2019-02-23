@@ -12,8 +12,8 @@
 #define FIBONACCI_H
 #include <iostream> // Always rember kids iostream is important ;) Tim
 
-#include "list.h"
-using namespace custom;
+#include <list>
+//using namespace custom;
 
 // the interactive fibonacci program
 void fibonacci();
@@ -37,7 +37,7 @@ public:
 	}
 	Number operator<<(Number rhs)
 	{
-		list<int> iterator rit = rhs.digits.rbegin();
+		std::list<int>::reverse_iterator rit = rhs.digits.rbegin();
 
 		for (rit; rit != nullptr; rit--)
 		{

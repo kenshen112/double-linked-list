@@ -125,31 +125,31 @@ Number::~Number()
 /*******************************
 * ADD ONTO OPERATOR
 ********************************/
-Number::operator += (Number rhs)
+Number Number::operator+=(Number &rhs)
 {
 	//add the sets of digits one at a time, watching for the case of carrying, use an iterator?
-	list<int> iterator it = this->digits.begin();
-	list<int> iterator ir = rhs->digits.begin();
+	std::list<int>::iterator it = this->digits.begin();
+	std::list<int>::iterator ir = rhs.digits.begin();
 	
 	for (ir; ir != nullptr; ir++)//as long as we earent out of things to add, keep going
 	{
 		if (it == nullptr)
 		{//if the number we are adding to is not big enoug, no big deal, just throw it on the end
-			digits.push_back(ir->data);
+			digits.push_back(ir.data);
 		}
 		else
 		{
-			it->data += ir->data;
+			it.data += ir.data;
 
-			if (it->data >= 1000)
+			if (it.data >= 1000)
 			{
-				it->data -= 1000;
-				if (it->pNext == nullptr)
+				it.data -= 1000;
+				if (it.pNext == NULL)
 				{
 					digits.push_back(1);
 				}
 				else
-					it->pNext->data += 1;
+					it.pNext->data += 1;
 			}
 			it++;
 		}
