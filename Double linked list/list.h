@@ -430,13 +430,13 @@ namespace custom
 	template <class T>
 	typename list<T>::iterator list<T>::begin()
 	{
-		return list<T>::iterator(this->p->pHead);
+		return list<T>::iterator(this->pHead);
 	}
 
 	template<class T>
 	typename list<T>::reverse_iterator list<T>::rend()
 	{
-		return list<T>::reverse_iterator(this->p->pHead);
+		return list<T>::reverse_iterator(this->pHead);
 	}
 
 	template<class T>
