@@ -282,9 +282,11 @@ namespace custom
 	{
 
 		private:
-			Node<T> *p;
+			
 
 		public:
+			Node<T> *p;
+			
 			iterator()
 			{
 				p = nullptr;
@@ -295,20 +297,61 @@ namespace custom
 				return p;
 			}
 
-			iterator(Node <T> *pNew)
+			iterator(Node <T> *pNewit)
 			{
-				p = pNew;
+				Node <T> *copyNode = nullptr;
+				Node <T> *tempNode = pNewit;
+				Node <T> *pHead = nullptr;
+				bool first = true;
+				do
+				{
+					if (first)
+					{
+						pHead = tempNode;
+						copyNode = pHead;
+						first = false;
+						tempNode = tempNode->pNext;
+					}
+					else
+					{
+						
+						tempNode = tempNode->pNext;
+						copyNode = copyNode->pNext;
+					}
+				} while (tempNode != nullptr);
+	
 			}
 
-			iterator(const iterator &rhs);
-			//{
-				
-			//}
+			iterator(const iterator &rhs)
+			{
+				*this = rhs;
+			}
 
-			iterator operator=(const iterator &rhs);
-			//{
-				
-			//}
+			iterator operator=(const iterator &rhs)
+			{
+				Node <T> *copyNode = nullptr;
+				Node <T> *tempNode = rhs.p;
+				Node <T> *pHead = nullptr;
+				bool first = true;
+				do
+				{
+					if (first)
+					{
+						pHead = tempNode;
+						copyNode = pHead;
+						first = false;
+						tempNode = tempNode->pNext;
+					}
+					else
+					{
+
+						tempNode = tempNode->pNext;
+						copyNode = copyNode->pNext;
+					}
+				} while (tempNode != nullptr);
+
+				return pHead;
+			}
 
 			iterator operator++()
 			{
