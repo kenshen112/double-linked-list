@@ -117,7 +117,6 @@
   <ItemGroup>
     <ClCompile Include="assignment07.cpp" />
     <ClCompile Include="fibonacci.cpp" />
-    <ClCompile Include="list.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="fibonacci.h" />

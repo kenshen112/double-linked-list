@@ -10,10 +10,10 @@ namespace custom
 	{
 	private:
 		int numElements;
-
-	public:
 		Node <T> *pHead;
 		Node <T> *pTail;
+	public:
+		
 
 		class iterator;
 		class reverse_iterator;
@@ -115,34 +115,8 @@ namespace custom
 		T front();
 		T back();
 
+		typename list<T>::iterator insert(list <T> ::iterator it, const T & t);
 		
-
-		typename list<T>::iterator insert(list <T> ::iterator it, const T & t)
-		{
-			Node <T> *pNew;
-			try
-			{
-				pNew = new Node<T>(t);
-			}
-			catch (std::bad_alloc)
-			{
-				throw "unable to allocate a new node for a list";
-			}
-
-			if (it != NULL)
-			{
-				pNew->pNext = it;
-				pNew->pPrev = it.p->pPrev;
-				it.p->pPrev = pNew;
-
-				if (pNew->pPrev != nullptr)
-				{
-					pNew->pPrev->pNext = pNew;
-				}
-			}
-
-			return pNew;
-		}
 
 
 
@@ -316,81 +290,25 @@ namespace custom
 				p = nullptr;
 			}
 
+			Node <T> getNode()
+			{
+				return p;
+			}
+
 			iterator(Node <T> *pNew)
 			{
 				p = pNew;
 			}
 
-			iterator(const iterator &rhs)
-			{
-				bool first = true;
-				Node <T> *pTemp = rhs.pHead;
-
-				for (int i = rhs.numElements; i > 0; i--)
-				{
-					Node <T> *pNew;
-					try
-					{
-						pNew = new Node <T>;
-					}
-					catch (std::bad_alloc)
-					{
-						throw "Error: Unable to accolcate new Node for list";
-					}
-
-					pNew->data = pTemp->data;
-
-					if (first)
-					{
-						pHead = pNew;
-						first = false;
-						pNew->pPrev = nullptr;
-					}
-					//Not done here yet
-					else
-					{
-						pNew->pPrev = pTail;
-						pTail->pNext = pNew;
-					}
-					pTail = pNew;
-				}
-			}
-
-			iterator operator=(const iterator &rhs)
-			{
-				bool first = true;
-				Node <T> *pTemp = rhs.pHead;
-
-				for (int i = rhs.numElements; i > 0; i--)		
-				{				
-					Node <T> *pNew;			
-					try
-					{					
-						pNew = new Node <T>;				
-					}
+			iterator(const iterator &rhs);
+			//{
 				
-					catch (std::bad_alloc)				
-					{					
-						throw "Error: Unable to accolcate new Node for list";				
-					}
+			//}
 
-				pNew->data = pTemp->data;
-
-				if (first)
-				{
-					pHead = pNew;
-					first = false;
-					pNew->pPrev = nullptr;
-				}
-				//Not done here yet
-				else
-				{
-					pNew->pPrev = pTail;
-					pTail->pNext = pNew;
-				}
-				pTail = pNew;
-			}
-			}
+			iterator operator=(const iterator &rhs);
+			//{
+				
+			//}
 
 			iterator operator++()
 			{
@@ -420,7 +338,7 @@ namespace custom
 
 			T operator*()
 			{
-				return pHead->data;
+				//return pHead->data;
 			}
 
 		};
@@ -523,5 +441,36 @@ namespace custom
 	{
 
 	}
+
+	template <class T>
+	typename list<T>::iterator list<T>::insert(list <T>::iterator it, const T & t)
+	{
+		Node <T> *pNew;
+		try
+		{
+			pNew = new Node<T>(t);
+		}
+		catch (std::bad_alloc)
+		{
+			throw "unable to allocate a new node for a list";
+		}
+
+		if (it != NULL)
+		{
+			pNew->pNext = it;
+			pNew->pPrev = it.p->pPrev;
+			it.p->pPrev = pNew;
+
+			if (pNew->pPrev != nullptr)
+			{
+				pNew->pPrev->pNext = pNew;
+			}
+		}
+
+		return pNew;
+	}
+
+
+
 
 }
