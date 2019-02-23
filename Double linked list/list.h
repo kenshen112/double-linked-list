@@ -30,6 +30,7 @@ namespace custom
 		{
 			bool first = true;
 			Node <T> *pTemp = rhs.pHead;
+
 			for (int i = rhs.numElements; i > 0; i--)
 			{
 				Node <T> *pNew;
@@ -48,18 +49,55 @@ namespace custom
 				{
 					pHead = pNew;
 					first = false;
+					pNew->pPrev = nullptr;
 				}
 				//Not done here yet
-
-
+				else
+				{
+					pNew->pPrev = pTail;
+					pTail->pNext = pNew;
+				}
+				pTail = pNew;
 			}
 		}
 		//the copy constructor and the assignment operator should be basically the same
 		// making a new version of the list that is passed to it. new, and seperate.
+		//we can also take advantage of new attributes to the list class that weren't there last week
+		//like the numElements variable.
 		list operator=(list rhs);
-		//{
-			//this = rhs; //pointers are fun kids //I don't think that how it should work - Ken
-		//}
+		{
+			bool first = true;
+			Node <T> *pTemp = rhs.pHead;
+
+			for (int i = rhs.numElements; i > 0; i--)
+			{
+				Node <T> *pNew;
+				try
+				{
+					pNew = new Node <T>;
+				}
+				catch (std::bad_alloc)
+				{
+					throw "Error: Unable to accolcate new Node for list";
+				}
+
+				pNew->data = pTemp->data;
+
+				if (first)
+				{
+					pHead = pNew;
+					first = false;
+					pNew->pPrev = nullptr;
+				}
+				//Not done here yet
+				else
+				{
+					pNew->pPrev = pTail;
+					pTail->pNext = pNew;
+				}
+				pTail = pNew;
+			}
+		}
 
 		//class iterator;
 		//class reverse_iterator;
