@@ -9,11 +9,11 @@ namespace custom
 	class list
 	{
 	private:
-		Node <T> *pHead;
-		Node <T> *pTail;
 		int numElements;
 
 	public:
+		Node <T> *pHead;
+		Node <T> *pTail;
 
 		class iterator;
 		class reverse_iterator;
@@ -116,7 +116,8 @@ namespace custom
 		T back();
 
 		
-		friend iterator insert(list <T> ::iterator it, const T & t)  
+
+		typename list<T>::iterator insert(list <T> ::iterator it, const T & t)
 		{
 			Node <T> *pNew;
 			try
@@ -145,7 +146,6 @@ namespace custom
 
 
 
-		
 		list <T> ::iterator find(const T & t);
 		list <T> ::iterator erase(list <T> ::iterator it);
 		list <T> ::iterator end();
@@ -321,15 +321,76 @@ namespace custom
 				p = pNew;
 			}
 
-			iterator(const iterator &rhs);
-			//{
-				//this = rhs; // again with the refractoring
-			//}
+			iterator(const iterator &rhs)
+			{
+				bool first = true;
+				Node <T> *pTemp = rhs.pHead;
 
-			iterator operator=(const iterator &rhs);
-			//{
-				//this = rhs; // this will be refractored 
-			//}
+				for (int i = rhs.numElements; i > 0; i--)
+				{
+					Node <T> *pNew;
+					try
+					{
+						pNew = new Node <T>;
+					}
+					catch (std::bad_alloc)
+					{
+						throw "Error: Unable to accolcate new Node for list";
+					}
+
+					pNew->data = pTemp->data;
+
+					if (first)
+					{
+						pHead = pNew;
+						first = false;
+						pNew->pPrev = nullptr;
+					}
+					//Not done here yet
+					else
+					{
+						pNew->pPrev = pTail;
+						pTail->pNext = pNew;
+					}
+					pTail = pNew;
+				}
+			}
+
+			iterator operator=(const iterator &rhs)
+			{
+				bool first = true;
+				Node <T> *pTemp = rhs.pHead;
+
+				for (int i = rhs.numElements; i > 0; i--)		
+				{				
+					Node <T> *pNew;			
+					try
+					{					
+						pNew = new Node <T>;				
+					}
+				
+					catch (std::bad_alloc)				
+					{					
+						throw "Error: Unable to accolcate new Node for list";				
+					}
+
+				pNew->data = pTemp->data;
+
+				if (first)
+				{
+					pHead = pNew;
+					first = false;
+					pNew->pPrev = nullptr;
+				}
+				//Not done here yet
+				else
+				{
+					pNew->pPrev = pTail;
+					pTail->pNext = pNew;
+				}
+				pTail = pNew;
+			}
+			}
 
 			iterator operator++()
 			{
