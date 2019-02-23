@@ -14,11 +14,11 @@
 #     Solo:
 #        Tim:
 #        Jessica:
-#        Ken:
+#        Ken: 9 hours
 # Difficulties:
 #     Tim:
 #     Jessica:
-#     Ken:
+#     Ken: properly declaring the operators in the big numbers class
 ###############################################################
 
 ##############################################################
