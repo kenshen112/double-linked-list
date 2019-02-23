@@ -10,7 +10,8 @@
 
 #include <iostream>
 #include "fibonacci.h"   // for fibonacci() prototype
-#include "list.h"        // for LIST
+//#include "list.h"        // for LIST
+#include <list> //std list
 using namespace std;
 
 
@@ -31,13 +32,14 @@ void fibonacci()
    int fib2 = 1;
    int fib3 = 0;
    
-   cout << fib1 << ", " << fib2 << ", ";
+   cout << fib1 << endl;
+   cout << fib2 << endl;
    int counter = 0;
 
    while(counter < number)
    {
       fib3 = fib1 + fib2;
-      cout <<  fib3 << ", ";
+      cout <<  fib3 << endl;
       
       fib1 = fib2;
       fib2 = fib3;
@@ -45,29 +47,24 @@ void fibonacci()
       counter++;
    }
 
-   cout << endl;
-   
    // prompt for a single large Fibonacci
    cout << "Which Fibonacci number would you like to display? ";
    cin  >> number;
-   int fib1 = 1;
-   int fib2 = 1;
-   int fib3 = 0;
-
-   cout << fib1 << ", " << fib2 << ", ";
+   Number fib1 = 1;
+   Number fib2 = 1;
+   Number fib3 = 0;
    
    // your code to display the <number>th Fibonacci number
-   while(fib3 <= number)
+   while(counter <= number)
    {
       fib3 = fib1 + fib2;
-      cout << fib3 << ", ";
 
       fib1 = fib2;
       fib2 = fib3;
 
+      counter++;
    }
    
-   cout << endl;
 }
 
 /*******************************************
@@ -79,6 +76,7 @@ void fibonacci()
 *******************************************/
 Number::Number()
 {
+   //need to make sure the new List is made??
 	//I don't think i actually need to put anything here???
 }
 
@@ -127,29 +125,29 @@ Number::~Number()
 ********************************/
 Number Number::operator+=(Number &rhs)
 {
-	//add the sets of digits one at a time, watching for the case of carrying, use an iterator?
-	std::list<int>::iterator it = this->digits.begin();
+   //add the sets of digits one at a time, watching for the case of carrying, use an       iterator?
+   std::list<int>::iterator it = this->digits.begin();
 	std::list<int>::iterator ir = rhs.digits.begin();
 	
-	for (ir; ir != nullptr; ir++)//as long as we earent out of things to add, keep going
+	for (ir; ir != nullptr; ir++)//as long as we earent out of things to add, keep going    
 	{
-		if (it == nullptr)
-		{//if the number we are adding to is not big enoug, no big deal, just throw it on the end
-			digits.push_back(ir.data);
+           if (it == nullptr)
+		{//if the numberwe are adding to is not big enoug, no big deal, just throw it on the end               
+                   digits.push_back(ir.data);
 		}
 		else
 		{
-			it.data += ir.data;
-
+                   it.data += ir.data;
+                        
 			if (it.data >= 1000)
 			{
-				it.data -= 1000;
+                           it.data -= 1000;
 				if (it.pNext == NULL)
 				{
-					digits.push_back(1);
+                                   digits.push_back(1);
 				}
 				else
-					it.pNext->data += 1;
+                                   it.pNext->data += 1;
 			}
 			it++;
 		}
