@@ -116,7 +116,7 @@ namespace custom
 		T back();
 
 		
-		friend list <T> ::iterator insert(list <T> ::iterator it, const T & t)  
+		friend iterator insert(list <T> ::iterator it, const T & t)  
 		{
 			Node <T> *pNew;
 			try
