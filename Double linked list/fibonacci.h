@@ -10,6 +10,8 @@
 
 #ifndef FIBONACCI_H
 #define FIBONACCI_H
+#include <iostream> // Always rember kids iostream is important ;) Tim
+
 #include "list.h"
 using namespace custom;
 
@@ -39,10 +41,10 @@ public:
 
 		for (rit; rit != nullptr; rit--)
 		{
-			cout << rit->data;
+			std::cout << rit->data; // were not using std nor should we, this is the proper C++ way to call anything from std or custom for that instance, Tim.
 			if (rit->pPrev != nullptr)
 			{
-				cout << ',';
+				std::cout << ',';
 			}
 		}
 	}

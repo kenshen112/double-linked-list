@@ -8,7 +8,6 @@ namespace custom
 	template <class T>
 	class list
 	{
-
 	private:
 		Node <T> *pHead;
 		Node <T> *pTail;
@@ -16,125 +15,9 @@ namespace custom
 
 	public:
 
-		class iterator
-		{
-
-		private:
-			Node<T> *p;
-
-		public:
-			iterator()
-			{
-				p = nullptr;
-			}
-
-			iterator(Node <T> *pNew)
-			{
-				p = pNew;
-			}
-
-			iterator(const iterator &rhs);
-			//{
-				//this = rhs; // again with the refractoring
-			//}
-
-			iterator operator=(const iterator &rhs);
-			//{
-				//this = rhs; // this will be refractored 
-			//}
-
-			iterator operator++()
-			{
-				if (p->pNext)
-				{
-					p = p->pNext;
-				}
-			}
-
-			iterator operator--()
-			{
-				if (p->pPrev)
-				{
-					p = p->pPrev;
-				}
-			}
-
-			bool operator==(iterator it)
-			{
-				return *this == it;
-			}
-
-			bool operator!=(iterator it)
-			{
-				return *this != it;
-			}
-
-			T operator*()
-			{
-				return pHead->data;
-			}
-
-		};
-
-		class reverse_iterator
-		{
-
-		private:
-			Node<T> *p;
-
-		public:
-			reverse_iterator()
-			{
-				p = nullptr;
-			}
-
-			reverse_iterator(Node <T> *pNew)
-			{
-				p = pNew;
-			}
-
-			reverse_iterator(const reverse_iterator &rhs);
-			//{
-				//this = rhs; // again with the refractoring
-			//}
-
-			reverse_iterator operator=(const reverse_iterator &rhs);
-			//{
-				//this = rhs; // this will be refractored 
-			//}
-
-			reverse_iterator operator++()
-			{
-				if (p->pNext)
-				{
-					p = p->pNext;
-				}
-			}
-
-			reverse_iterator operator--()
-			{
-				if (p->pPrev)
-				{
-					p = p->pPrev;
-				}
-			}
-
-			bool operator==(reverse_iterator it)
-			{
-				return *this == it;
-			}
-
-			bool operator!=(reverse_iterator it)
-			{
-				return *this != it;
-			}
-
-			T operator*()
-			{
-				return this->data;
-			}
-
-		};
+		class iterator;
+		class reverse_iterator;
+		
 
 		list()
 		{
@@ -173,12 +56,12 @@ namespace custom
 		T back();
 
 		
-		list<T> ::iterator insert(iterator & it, const T & data)
+		friend list <T> ::iterator insert(list <T> ::iterator it, const T & t)  
 		{
 			Node <T> *pNew;
 			try
 			{
-				pNew = new Node<T>(data);
+				pNew = new Node<T>(t);
 			}
 			catch (std::bad_alloc)
 			{
@@ -188,8 +71,8 @@ namespace custom
 			if (it != NULL)
 			{
 				pNew->pNext = it;
-				pNew->pPrev = it.pPrev;
-				it.pPrev = pNew;
+				pNew->pPrev = it.p->pPrev;
+				it.p->pPrev = pNew;
 
 				if (pNew->pPrev != nullptr)
 				{
@@ -220,38 +103,6 @@ namespace custom
 
 
 	};
-
-
-	template <class T>
-	typename list<T>::iterator list<T>::begin()
-	{
-		return list<T>::iterator(p->pHead);
-	}
-
-	template<class T>
-	 typename list<T>::reverse_iterator list<T>::rend()
-	{
-		return list<T>::reverse_iterator(p->pHead);
-	}
-
-	 template<class T>
-	 typename list<T>::reverse_iterator list<T>::rbegin()
-	 {
-		 return list<T>::reverse_iterator(nullptr);
-	 }
-
-	template <class T>
-	typename list<T>::iterator list<T>::end()
-	{
-		return list<T>::iterator(nullptr);
-	}
-
-	template<class T>
-	typename list<T>::iterator list<T>::find(const T & t)
-	{
-		return list<T>::iterator();
-	}
-
 
 	template <class T>
 	T list<T>::front()
@@ -294,13 +145,6 @@ namespace custom
 		delete pHead;
 		delete pTail;
 	}
-
-	template <class T>
-	typename list<T>::iterator list<T>::erase(list <T> ::iterator it)
-	{
-
-	}
-
 
 	// These seem flawed...
 
@@ -388,129 +232,164 @@ namespace custom
 
 
 
-	/*template <class T>
+	template <class T>
 	class list <T> ::iterator
 	{
 
-	private:
-		Node<T> *p;
+		private:
+			Node<T> *p;
 
-	public:
-		iterator()
-		{
-			p = nullptr;
-		}
-
-		iterator(Node <T> *pNew)
-		{
-			p = pNew;
-		}
-
-		iterator(const iterator &rhs)
-		{
-			this = rhs; // again with the refractoring
-		}
-
-		iterator operator=(const iterator &rhs)
-		{
-			this = rhs; // this will be refractored 
-		}
-
-		iterator operator++()
-		{
-			if (p->pNext)
+		public:
+			iterator()
 			{
-				p = p->pNext;
+				p = nullptr;
 			}
-		}
 
-		iterator operator--()
-		{
-			if (p->pPrev)
+			iterator(Node <T> *pNew)
 			{
-				p = p->pPrev;
+				p = pNew;
 			}
-		}
 
-		bool operator==(iterator it)
-		{
-			return this == rhs;
-		}
+			iterator(const iterator &rhs);
+			//{
+				//this = rhs; // again with the refractoring
+			//}
 
-		bool operator!=(iterator it)
-		{
-			return this != rhs;
-		}
+			iterator operator=(const iterator &rhs);
+			//{
+				//this = rhs; // this will be refractored 
+			//}
 
-		T operator*()
-		{
-			return this->data;
-		}
+			iterator operator++()
+			{
+				if (p->pNext)
+				{
+					p = p->pNext;
+				}
+			}
 
-	};
+			iterator operator--()
+			{
+				if (p->pPrev)
+				{
+					p = p->pPrev;
+				}
+			}
+
+			bool operator==(iterator it)
+			{
+				return *this == it;
+			}
+
+			bool operator!=(iterator it)
+			{
+				return *this != it;
+			}
+
+			T operator*()
+			{
+				return pHead->data;
+			}
+
+		};
 
 	template <class T>
 	class list <T> ::reverse_iterator
 	{
 
-	private:
-		Node<T> *p;
+		private:
+			Node<T> *p;
 
-	public:
-		iterator()
-		{
-			p = nullptr;
-		}
-
-		iterator(Node <T> *pNew)
-		{
-			p = pNew;
-		}
-
-		iterator(const iterator &rhs)
-		{
-			this = rhs; // again with the refractoring
-		}
-
-		iterator operator=(const iterator &rhs)
-		{
-			this = rhs; // this will be refractored 
-		}
-
-		iterator operator++()
-		{
-			if (p->pNext)
+		public:
+			reverse_iterator()
 			{
-				p = p->pNext;
+				p = nullptr;
 			}
-		}
 
-		iterator operator--()
-		{
-			if (p->pPrev)
+			reverse_iterator(Node <T> *pNew)
 			{
-				p = p->pPrev;
+				p = pNew;
 			}
-		}
 
-		bool operator==(iterator it)
-		{
-			return this == rhs;
-		}
+			reverse_iterator(const reverse_iterator &rhs);
+			//{
+				//this = rhs; // again with the refractoring
+			//}
 
-		bool operator!=(iterator it)
-		{
-			return this != rhs;
-		}
+			reverse_iterator operator=(const reverse_iterator &rhs);
+			//{
+				//this = rhs; // this will be refractored 
+			//}
 
-		T operator*()
-		{
-			return this->data;
-		}
+			reverse_iterator operator++()
+			{
+				if (p->pNext)
+				{
+					p = p->pNext;
+				}
+			}
 
-	};*/
+			reverse_iterator operator--()
+			{
+				if (p->pPrev)
+				{
+					p = p->pPrev;
+				}
+			}
 
+			bool operator==(reverse_iterator it)
+			{
+				return *this == it;
+			}
 
+			bool operator!=(reverse_iterator it)
+			{
+				return *this != it;
+			}
 
+			T operator*()
+			{
+				return this->p->data;
+			}
+
+		};
+
+	//C++ is wack yo, Timanese Translator's note ("C++ wants all mentions of iterators to be after the definition of the iterators in question)
+
+	template <class T>
+	typename list<T>::iterator list<T>::begin()
+	{
+		return list<T>::iterator(this->p->pHead);
+	}
+
+	template<class T>
+	typename list<T>::reverse_iterator list<T>::rend()
+	{
+		return list<T>::reverse_iterator(this->p->pHead);
+	}
+
+	template<class T>
+	typename list<T>::reverse_iterator list<T>::rbegin()
+	{
+		return list<T>::reverse_iterator(nullptr);
+	}
+
+	template <class T>
+	typename list<T>::iterator list<T>::end()
+	{
+		return list<T>::iterator(nullptr);
+	}
+
+	template<class T>
+	typename list<T>::iterator list<T>::find(const T & t)
+	{
+		return list<T>::iterator();
+	}
+
+	template <class T>
+	typename list<T>::iterator list<T>::erase(list <T> ::iterator it)
+	{
+
+	}
 
 }
