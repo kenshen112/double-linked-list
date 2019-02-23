@@ -70,4 +70,88 @@ void fibonacci()
    cout << endl;
 }
 
+/*******************************************
+* Here follows methods for the Number class
+********************************************/
 
+/******************************************
+* NUMBER DEFAULT CONSTRUCTOR
+*******************************************/
+Number::Number()
+{
+	//I don't think i actually need to put anything here???
+}
+
+/************************************************
+* NUMBER NON-DEFAULT CASE ONE
+*********************************************/
+Number::Number(Number rhs)
+{
+	this->digits = rhs.digits; //relying on the list assignment operator here
+}
+
+/**************************************************
+* NUMBER NON-DEFAULT CASE TWO
+***************************************************/
+Number::Number(int in)
+{
+	//i need to interpret the int into its seperate sets of three digits... and push them into the list...
+	//   simple, i need to use modulus, in sets of 1000. :)
+	//   three steps, one, is it equal to or bigger than 1K
+	//                two, either way push that number to the back of digits.
+	//			      three, divide by 1K to remove the three lowest digits from play.
+	// actually, two should go first, then one, then three... or, we don't even need one!
+
+	while (in != 0)
+	{
+		digits.push_back(in % 1000);
+		in = (in / 1000);
+	}
+
+}
+
+/************************************************
+* NUMBER DESTRUCTOR
+*************************************************/
+Number::~Number()
+{
+	//Here we will make sure the memory for the list is freed// or rather don't, the list class should take care of itself???
+}
+
+/***********
+* Operators
+************/
+
+/*******************************
+* ADD ONTO OPERATOR
+********************************/
+Number Number::operator+=(Number &rhs)
+{
+	//add the sets of digits one at a time, watching for the case of carrying, use an iterator?
+	std::list<int>::iterator it = this->digits.begin();
+	std::list<int>::iterator ir = rhs.digits.begin();
+	
+	for (ir; ir != nullptr; ir++)//as long as we earent out of things to add, keep going
+	{
+		if (it == nullptr)
+		{//if the number we are adding to is not big enoug, no big deal, just throw it on the end
+			digits.push_back(ir.data);
+		}
+		else
+		{
+			it.data += ir.data;
+
+			if (it.data >= 1000)
+			{
+				it.data -= 1000;
+				if (it.pNext == NULL)
+				{
+					digits.push_back(1);
+				}
+				else
+					it.pNext->data += 1;
+			}
+			it++;
+		}
+	}
+}
