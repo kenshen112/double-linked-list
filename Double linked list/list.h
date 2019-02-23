@@ -26,7 +26,7 @@ namespace custom
 			numElements = 0;
 		}
 
-		list(const list <T> &rhs);
+		list(const list <T> &rhs)
 		{
 			bool first = true;
 			Node <T> *pTemp = rhs.pHead;
@@ -54,6 +54,7 @@ namespace custom
 
 			}
 		}
+
 		//the copy constructor and the assignment operator should be basically the same
 		// making a new version of the list that is passed to it. new, and seperate.
 		list operator=(list rhs);
