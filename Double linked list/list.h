@@ -65,7 +65,7 @@ namespace custom
 		// making a new version of the list that is passed to it. new, and seperate.
 		//we can also take advantage of new attributes to the list class that weren't there last week
 		//like the numElements variable.
-		list operator=(list rhs);
+		list operator=(list rhs)
 		{
 			bool first = true;
 			Node <T> *pTemp = rhs.pHead;
@@ -99,9 +99,6 @@ namespace custom
 				pTail = pNew;
 			}
 		}
-
-		//class iterator;
-		//class reverse_iterator;
 
 
 		int size() { return numElements; }
