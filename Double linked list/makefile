@@ -1,11 +1,24 @@
 ###############################################################
 # Program:
 #     Assignment 07, LIST
-#     Brother XXXXX, CS235
+#     Brother Kirby, CS235
 # Author:
-#     <your name here>
+#     Tim Obarr
+#     Jessica Smith
+#     Ken Smith
 # Summary:
-#     <put a description here>
+#     A contained ADT implementation of a doubly linked list,
+#     as well as driver programs to test that implementation
+# Time:
+#     Group:
+#     Solo:
+#        Tim:
+#        Jessica:
+#        Ken:
+# Difficulties:
+#     Tim:
+#     Jessica:
+#     Ken:
 ###############################################################
 
 ##############################################################
