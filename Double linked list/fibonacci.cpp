@@ -50,17 +50,17 @@ void fibonacci()
    // prompt for a single large Fibonacci
    cout << "Which Fibonacci number would you like to display? ";
    cin  >> number;
-   Number fib1 = 1;
-   Number fib2 = 1;
-   Number fib3 = 0;
+   Number bigFib1 = 1;
+   Number bigFib2 = 1;
+   Number bigFib3 = 0;
    
    // your code to display the <number>th Fibonacci number
    while(counter <= number)
    {
-      fib3 = fib1 + fib2;
+      bigFib3 = bigFib1 + bigFib2;
 
-      fib1 = fib2;
-      fib2 = fib3;
+      bigFib1 = bigFib2;
+      bigFib2 = bigFib3;
 
       counter++;
    }
