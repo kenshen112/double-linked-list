@@ -112,8 +112,8 @@ namespace custom
 		void pop_front();
 
 		
-		T front();
-		T back();
+		 T &front();
+		 T &back();
 
 		typename list<T>::iterator insert(list <T> ::iterator it, const T & t);
 		
@@ -139,7 +139,7 @@ namespace custom
 	};
 
 	template <class T>
-	T list<T>::front()
+	 T &list<T>::front()
 	{
 		if (empty())
 		{
@@ -153,7 +153,7 @@ namespace custom
 	}
 
 	template <class T>
-	T list<T>::back()
+	 T &list<T>::back()
 	{
 		if (empty())
 		{
