@@ -12,12 +12,13 @@
 # Time:
 #     Group:
 #     Solo:
-#        Tim:
-#        Jessica:
+#        Tim: 12+ 
+#        Jessica: 4 hours
 #        Ken: 9 hours
 # Difficulties:
-#     Tim:
-#     Jessica:
+#     Tim: an error in list.h
+#     Jessica: Figuring out how to implement the big number class into
+#	the fibonacci algorithm.
 #     Ken: properly declaring the operators in the big numbers class
 ###############################################################
 

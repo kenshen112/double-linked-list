@@ -127,27 +127,27 @@ Number Number::operator+=(Number &rhs)
 {
    //add the sets of digits one at a time, watching for the case of carrying, use an       iterator?
    std::list<int>::iterator it = this->digits.begin();
-	std::list<int>::iterator ir = rhs.digits.begin();
+//	std::list<int>::iterator ir = rhs.digits.begin();
 	
-	for (ir; ir != nullptr; ir++)//as long as we earent out of things to add, keep going    
+	for (std::list<int>::iterator ir = rhs.digits.begin(); ir != rhs.digits.end(); ir++)//as long as we earent out of things to add, keep going    
 	{
-           if (it == nullptr)
+           if (it == digits.end())
 		{//if the numberwe are adding to is not big enoug, no big deal, just throw it on the end               
-                   digits.push_back(ir.data);
+                   digits.push_back(*ir);
 		}
 		else
 		{
-                   it.data += ir.data;
+                   *it += *ir;
                         
-			if (it.data >= 1000)
+			if (*it >= 1000)
 			{
-                           it.data -= 1000;
+                           *it -= 1000;
 				if (it.pNext == NULL)
 				{
                                    digits.push_back(1);
 				}
 				else
-                                   it.pNext->data += 1;
+                                   it.pNext->data += 1; //make sure this would work with our list class. cuz it doesn't with the std::list class
 			}
 			it++;
 		}
