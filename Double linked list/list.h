@@ -381,7 +381,7 @@ namespace custom
 
 			T operator*()
 			{
-				return pHead->data;
+				return p->pNext->data;
 			}
 
 		};
