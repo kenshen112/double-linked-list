@@ -513,7 +513,7 @@ namespace custom
 
 		if (it != NULL)
 		{
-			pNew->pNext = it;
+			pNew->pNext = it.p;
 			pNew->pPrev = it.p->pPrev;
 			it.p->pPrev = pNew;
 
