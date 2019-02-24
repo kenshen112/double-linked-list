@@ -381,7 +381,7 @@ namespace custom
 
 			T operator*()
 			{
-				//return pHead->data;
+				return pHead->data;
 			}
 
 		};
@@ -476,7 +476,20 @@ namespace custom
 	template<class T>
 	typename list<T>::iterator list<T>::find(const T & t)
 	{
-		return list<T>::iterator();
+		if (pHead == nullptr)
+		{
+			return nullptr;
+		}
+
+		for (Node <T> *tempNode = pHead; tempNode; tempNode = tempNode->pNext)
+		{
+			if (tempNode->data == t)
+			{
+				return iterator(tempNode);
+			}
+		}
+
+		return iterator(nullptr);
 	}
 
 	template <class T>
