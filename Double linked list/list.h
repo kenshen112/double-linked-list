@@ -411,7 +411,7 @@ namespace custom
 
 			reverse_iterator operator=(const reverse_iterator &rhs);
 			//{
-				//this = rhs; // this will be refractored 
+                        //this = rhs; // this will be refractored 
 			//}
 
 			reverse_iterator operator++()
