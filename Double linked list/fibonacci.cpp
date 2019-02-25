@@ -83,7 +83,7 @@ Number::Number()
 /************************************************
 * NUMBER NON-DEFAULT CASE ONE
 *********************************************/
-Number::Number(Number &rhs)
+Number::Number(const Number &rhs)
 {
 	this->digits = rhs.digits; //relying on the list assignment operator here
 }
