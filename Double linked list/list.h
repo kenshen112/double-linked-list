@@ -121,7 +121,7 @@ namespace custom
 
 
 		list <T> ::iterator find(const T & t);
-		list <T> ::iterator erase(list <T> ::iterator it);
+		void erase(list <T> ::iterator it);
 		list <T> ::iterator end();
 		list <T> ::iterator begin();
 
@@ -429,6 +429,7 @@ namespace custom
 				{
 					p = p->pNext;
 				}
+				return *this;
 			}
 
 			reverse_iterator operator--()
@@ -502,9 +503,31 @@ namespace custom
 	}
 
 	template <class T>
-	typename list<T>::iterator list<T>::erase(list <T> ::iterator it)
+	void list<T>::erase(list <T> ::iterator it)
 	{
+		Node<T> *TempNode = new Node<T>;
+		TempNode = it.p;
+		if (TempNode == nullptr)
+		{
+			return;
+		}
+		
+		if (TempNode->pNext == nullptr)
+		{
+			TempNode->pPrev->pNext = nullptr;
+		}
+		else if (TempNode->pPrev == nullptr)
+		{
+			TempNode->pNext->pPrev = nullptr;
+		}
+		else
+		{
+			TempNode->pNext->pPrev = TempNode->pPrev;
+			TempNode->pPrev->pNext = TempNode->pNext;
+		}
 
+		delete TempNode;
+		return;
 	}
 
 	template <class T>
