@@ -30,6 +30,7 @@ public:
 
 	//Operators i need add, assignment, insertion(for displaying)
 	Number operator += (Number & rhs);
+
 	Number operator= (const Number & rhs)
 	{
 		digits = rhs.digits;
