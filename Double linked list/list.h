@@ -379,7 +379,7 @@ namespace custom
 
 			bool operator!=(iterator it)
 			{
-				return this->p != it->p;
+				return this.p != it.p;
 			}
 
 			T operator*()
