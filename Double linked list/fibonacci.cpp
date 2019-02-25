@@ -10,10 +10,12 @@
 
 #include <iostream>
 #include "fibonacci.h"   // for fibonacci() prototype
-//#include "list.h"        // for LIST
-#include <list> //std list
-using namespace std;
-
+#include "list.h"        // for LIST
+//#include <list> //std list
+using namespace custom;
+using std::cout;
+using std::endl;
+using std::cin;
 
 /************************************************
  * FIBONACCI
@@ -126,10 +128,10 @@ Number::~Number()
 Number Number::operator+=(Number &rhs)
 {
    //add the sets of digits one at a time, watching for the case of carrying, use an       iterator?
-   std::list<int>::iterator it = this->digits.begin();
+   list<int>::iterator it = this->digits.begin();
 //	std::list<int>::iterator ir = rhs.digits.begin();
 	
-	for (std::list<int>::iterator ir = rhs.digits.begin(); ir != rhs.digits.end(); ir++)//as long as we earent out of things to add, keep going    
+   for (list<int>::iterator ir = rhs.digits.begin(); ir != rhs.digits.end(); ++ir)//as long as we earent out of things to add, keep going    
 	{
            if (it == digits.end())
 		{//if the numberwe are adding to is not big enoug, no big deal, just throw it on the end               
@@ -142,14 +144,14 @@ Number Number::operator+=(Number &rhs)
 			if (*it >= 1000)
 			{
                            *it -= 1000;
-				if (it.pNext == NULL)
+				if (++it == NULL)
 				{
                                    digits.push_back(1);
 				}
 				else
-                                   it.pNext->data += 1; //make sure this would work with our list class. cuz it doesn't with the std::list class
+                                   *++it += 1; //make sure this would work with our list class. cuz it doesn't with the std::list class
 			}
-			it++;
+			++it;
 		}
 	}
 }

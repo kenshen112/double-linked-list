@@ -11,9 +11,10 @@
 #ifndef FIBONACCI_H
 #define FIBONACCI_H
 #include <iostream> // Always rember kids iostream is important ;) Tim
+#include "list.h"
 
-#include <list>
-//using namespace custom;
+//#include <list>
+using namespace custom;
 
 // the interactive fibonacci program
 void fibonacci();
@@ -40,7 +41,7 @@ public:
 	{
            //std::list<int>::reverse_iterator rit = rhs.digits.rbegin(); // rBegin belongs to reverse_iterator no valid conversion to iterator.
 
-		for ( std::list<int>::reverse_iterator rit = rhs.digits.rbegin(); rit != rhs.digits.rend(); ++rit)
+		for ( list<int>::reverse_iterator rit = rhs.digits.rbegin(); rit != rhs.digits.rend(); ++rit)
 		{
 			std::cout << *rit; // were not using std nor should we, this is the proper C++ way to call anything from std or custom for that instance, Tim.
 			if (rit != rhs.digits.rend())
@@ -51,7 +52,7 @@ public:
 	}
 
 private:
-	std::list<int> digits;
+	list<int> digits;
 };
 
 
