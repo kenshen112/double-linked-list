@@ -446,7 +446,7 @@ namespace custom
 
 			bool operator!=(reverse_iterator it)
 			{
-				return *this != it;
+				return this.p != it.p;
 			}
 
 			T operator*()
