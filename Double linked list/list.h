@@ -390,7 +390,7 @@ namespace custom
 				}
 				else
 				{
-					throw "ERROR: Cannot dereference a NULL pointer"
+					throw "ERROR: Cannot dereference a NULL pointer";
 				}
 			}
 
