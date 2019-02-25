@@ -98,6 +98,7 @@ namespace custom
 				}
 				pTail = pNew;
 			}
+			return this;
 		}
 
 
@@ -282,23 +283,19 @@ namespace custom
 	{
 
 		private:
-			
+			Node<T> *p;
 
 		public:
-			Node<T> *p;
-			
+			//Constructors/Destructor
 			iterator()
 			{
 				p = nullptr;
 			}
 
-			Node <T> getNode()
+			iterator(Node <T> *pNewit)    //I think its just supposed to copy the iterator, meaning just the pointer - Ken
 			{
-				return p;
-			}
-
-			iterator(Node <T> *pNewit)
-			{
+				this->p = pNewit;
+				/*
 				Node <T> *copyNode = nullptr;
 				Node <T> *tempNode = pNewit;
 				Node <T> *pHead = nullptr;
@@ -318,17 +315,20 @@ namespace custom
 						tempNode = tempNode->pNext;
 						copyNode = copyNode->pNext;
 					}
-				} while (tempNode != nullptr);
+				} while (tempNode != nullptr);*/
 	
 			}
 
 			iterator(const iterator &rhs)
 			{
-				*this = rhs;
+				this->p = rhs.p;
 			}
 
+			//Operators
 			iterator operator=(const iterator &rhs)
 			{
+				p = rhs.p;
+				/*
 				Node <T> *copyNode = nullptr;
 				Node <T> *tempNode = rhs.p;
 				Node <T> *pHead = nullptr;
@@ -350,7 +350,8 @@ namespace custom
 					}
 				} while (tempNode != nullptr);
 
-				return pHead;
+				return pHead;*/
+				return p;
 			}
 
 			iterator operator++()
@@ -359,6 +360,7 @@ namespace custom
 				{
 					p = p->pNext;
 				}
+				return this;
 			}
 
 			iterator operator--()
@@ -367,6 +369,7 @@ namespace custom
 				{
 					p = p->pPrev;
 				}
+				return this;
 			}
 
 			bool operator==(iterator it)
@@ -376,12 +379,19 @@ namespace custom
 
 			bool operator!=(iterator it)
 			{
-				return *this != it;
+				return this->p != it->p;
 			}
 
 			T operator*()
 			{
-				return p->pNext->data;
+				if (p)
+				{
+					return p->data;
+				}
+				else
+				{
+					throw "ERROR: Cannot dereference a NULL pointer"
+				}
 			}
 
 		};
