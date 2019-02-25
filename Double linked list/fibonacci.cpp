@@ -52,17 +52,17 @@ void fibonacci()
    cin  >> number;
    Number bigFib1 = 1;
    Number bigFib2 = 1;
-   Number bigFib3 = 0;
+   Number bigFibTotal = 0;
    
    // your code to display the <number>th Fibonacci number
-   while(counter <= number)
+   counter = 0;
+
+   for(counter; counter <= number; counter++)
    {
-      bigFib3 = bigFib1 + bigFib2;
-
-      bigFib1 = bigFib2;
-      bigFib2 = bigFib3;
-
-      counter++;
+      bigFibTotal += bigFib1;
+	  Number numTemp = bigFib1;
+      bigFib1 += bigFib2;
+      bigFib2 = numTemp;
    }
    
 }
@@ -83,9 +83,9 @@ Number::Number()
 /************************************************
 * NUMBER NON-DEFAULT CASE ONE
 *********************************************/
-Number::Number(Number rhs)
+Number::Number(Number &rhs)
 {
-	this->digits = rhs.digits; //relying on the list assignment operator here
+	digits = rhs.digits; //relying on the list assignment operator here
 }
 
 /**************************************************
