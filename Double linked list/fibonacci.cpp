@@ -85,7 +85,7 @@ Number::Number()
 *********************************************/
 Number::Number(Number &rhs)
 {
-	digits = rhs.digits; //relying on the list assignment operator here
+	this->digits = rhs.digits; //relying on the list assignment operator here
 }
 
 /**************************************************
