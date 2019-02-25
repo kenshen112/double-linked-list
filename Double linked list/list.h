@@ -14,7 +14,6 @@ namespace custom
 		Node <T> *pTail;
 	public:
 		
-
 		class iterator;
 		class reverse_iterator;
 		
@@ -98,7 +97,7 @@ namespace custom
 				}
 				pTail = pNew;
 			}
-			return this;
+			return *this;
 		}
 
 
@@ -282,10 +281,10 @@ namespace custom
 	class list <T> ::iterator
 	{
 
-		private:
-			Node<T> *p;
+          public:
+           Node<T> *p;
 
-		public:
+		
 			//Constructors/Destructor
 			iterator()
 			{
@@ -360,7 +359,7 @@ namespace custom
 				{
 					p = p->pNext;
 				}
-				return this;
+				return *this;
 			}
 
 			iterator operator--()
@@ -369,7 +368,7 @@ namespace custom
 				{
 					p = p->pPrev;
 				}
-				return this;
+				return *this;
 			}
 
 			bool operator==(iterator it)
@@ -379,7 +378,7 @@ namespace custom
 
 			bool operator!=(iterator it)
 			{
-				return this.p != it.p;
+				return this->p != it.p;
 			}
 
 			T operator*()
