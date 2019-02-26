@@ -29,7 +29,7 @@ namespace custom
 		{
 			bool first = true;
 			Node <T> *pTemp = rhs.pHead;
-			numElements = 0;
+			numElements = rhs.numElements;
 
 			for (int i = rhs.numElements; i > 0; i--)
 			{
@@ -69,7 +69,7 @@ namespace custom
 		{
 			bool first = true;
 			Node <T> *pTemp = rhs.pHead;
-
+			numElements = rhs.numElements;
 			for (int i = rhs.numElements; i > 0; i--)
 			{
 				Node <T> *pNew;
