@@ -14,12 +14,12 @@
 #     Solo:
 #        Tim: 12+ 
 #        Jessica: 4 hours
-#        Ken: 9 hours
+#        Ken: 14 hours
 # Difficulties:
 #     Tim: Figureing out how to declare insert was the MOST DIFFICULT thing i've had to do all semester
 #     Jessica: Figuring out how to implement the big number class into
 #	the fibonacci algorithm.
-#     Ken: properly declaring the operators in the big numbers class
+#     Ken: properly declaring and then fixing operators for big number, and list
 ###############################################################
 
 ##############################################################
