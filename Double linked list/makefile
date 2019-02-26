@@ -16,7 +16,7 @@
 #        Jessica: 4 hours
 #        Ken: 9 hours
 # Difficulties:
-#     Tim: an error in list.h
+#     Tim: Figureing out how to declare insert was the MOST DIFFICULT thing i've had to do all semester
 #     Jessica: Figuring out how to implement the big number class into
 #	the fibonacci algorithm.
 #     Ken: properly declaring the operators in the big numbers class
