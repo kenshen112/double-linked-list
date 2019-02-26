@@ -33,7 +33,7 @@ public:
 	Number operator= (const Number & rhs)
 	{
 		digits = rhs.digits;
-		return this;
+		return *this;
 	}
 	Number operator<<(Number rhs)
 	{
