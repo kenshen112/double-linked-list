@@ -29,6 +29,7 @@ namespace custom
 		{
 			bool first = true;
 			Node <T> *pTemp = rhs.pHead;
+			numElements = 0;
 
 			for (int i = rhs.numElements; i > 0; i--)
 			{
