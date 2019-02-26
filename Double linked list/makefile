@@ -10,10 +10,10 @@
 #     A contained ADT implementation of a doubly linked list,
 #     as well as driver programs to test that implementation
 # Time:
-#     Group:
+#     Group: 3 hours
 #     Solo:
 #        Tim: 12+ 
-#        Jessica: 4 hours
+#        Jessica: 5 hours
 #        Ken: 14 hours
 # Difficulties:
 #     Tim: Figureing out how to declare insert was the MOST DIFFICULT thing i've had to do all semester
