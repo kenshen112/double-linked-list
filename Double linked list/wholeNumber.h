@@ -1,26 +1,23 @@
 /***********************************************************************
  * Header:
- *    FIBONACCI
+ *    WHOLE NUMBERS
  * Summary:
- *    This will contain just the prototype for fibonacci(). You may
+ *    This will contain the whole Number class. You may
  *    want to put other class definitions here as well.
  * Author
  *    <your names here>
  ************************************************************************/
 
-#ifndef FIBONACCI_H
-#define FIBONACCI_H
+#ifndef WHOLENUMBER_H
+#define WHOLENUMBER_H
 #include <iostream> // Always rember kids iostream is important ;) Tim
 #include "list.h"
 
-//#include <list>
+
 using namespace custom;
 
-// the interactive fibonacci program
-void fibonacci();
 
 // the class definition for really big numbers
-/*
 class Number
 {
 public:
@@ -55,8 +52,8 @@ public:
 private:
 	list<int> digits;
 };
-*/
 
 
-#endif // FIBONACCI_H
+
+#endif // WHOLENUMBER_H
 
