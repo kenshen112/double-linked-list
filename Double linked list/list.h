@@ -186,6 +186,7 @@ namespace custom
 		try
 		{	
 			itemNode = new Node<T>(item); //making a new node
+			nemElements++;
 		}
 		catch (std::bad_alloc)
 		{
@@ -216,6 +217,7 @@ namespace custom
 		try
 		{
 			itemNode = new Node<T>(item); //making a new node
+			numElements++;
 		}
 		catch (std::bad_alloc)
 		{
