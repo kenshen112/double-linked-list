@@ -411,51 +411,41 @@ namespace custom
 			reverse_iterator(Node <T> *pNew)
 			{
 				p = pNew;
-			}
-
-			reverse_iterator(const reverse_iterator &rhs);
-			//{
-				//this = rhs; // again with the refractoring
-			//}
-
-			reverse_iterator operator=(const reverse_iterator &rhs);
-			//{
-                        //this = rhs; // this will be refractored 
-			//}
+                        }
 
 			reverse_iterator operator++()
 			{
-				if (p->pNext)
+                           if (p->pNext)
 				{
-					p = p->pNext;
+                                   p = p->pNext;
 				}
 				return *this;
 			}
-
+                        
 			reverse_iterator operator--()
 			{
-				if (p->pPrev)
+                           if (p->pPrev)
 				{
-					p = p->pPrev;
+                                   p = p->pPrev;
 				}
 			}
-
+                        
 			bool operator==(reverse_iterator it)
 			{
-				return *this == it;
+                           return *this == it;
 			}
-
+                        
 			bool operator!=(reverse_iterator it)
 			{
-				return this->p != it.p;
+                           return this->p != it.p;
 			}
-
+                        
 			T operator*()
 			{
-				return this->p->data;
+                           return this->p->data;
 			}
-
-		};
+                        
+        };
 
 	//C++ is wack yo, Timanese Translator's note ("C++ wants all mentions of iterators to be after the definition of the iterators in question)
 
