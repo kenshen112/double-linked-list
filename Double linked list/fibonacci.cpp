@@ -139,31 +139,25 @@ Number Number::operator+=(Number &rhs)
 		}
 		else
 		{
-<<<<<<< HEAD
                    *it + *ir;
                         
 			if (*it >= 1000)
 			{
                            *it - 1000;
-=======
-            *it += *ir;
                         
 			if (*it >= 1000)
 			{
-                *it -= 1000;
->>>>>>> 6c78509dabf26532c9aea7d2a2c7add2aeddd7b6
 				if (++it == NULL)
 				{
-                    digits.push_back(1);
+                                   digits.push_back(1);
 				}
 				else
-<<<<<<< HEAD
+                                {
                                    *++it + 1; //make sure this would work with our list class. cuz it doesn't with the std::list class
-=======
-                   *++it += 1; //make sure this would work with our list class. cuz it doesn't with the std::list class
->>>>>>> 6c78509dabf26532c9aea7d2a2c7add2aeddd7b6
-			}
+                                }
 			++it;
-		}
-	}
+                        }
+                        }
+                }
+        }
 }
